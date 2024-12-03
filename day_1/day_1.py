@@ -17,13 +17,12 @@ print("Part 1:", part_1_ans)
 
 # Part 2
 
-list_1_dict = Counter(list_1)
-list_2_dict = Counter(list_2)
+list_2_counts = Counter(list_2)
 
 similarities = []
 for i in range(len(list_1)):
     list_id = list_1[i]
-    similarities.append(list_id * list_2_dict[list_id])
+    similarities.append(list_id * list_2_counts[list_id])
 
 part_2_ans = sum(similarities)
 print("Part 2:", part_2_ans)

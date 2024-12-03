@@ -2,7 +2,7 @@ import re
 
 with open("input.txt") as f:
     lines = f.readlines()
-    joined_lines = "".join(lines)
+    joined_lines = "".join(lines).replace("\n", "")
 
 
 def calc_line_mul_sum(line):

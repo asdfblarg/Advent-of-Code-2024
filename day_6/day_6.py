@@ -16,6 +16,7 @@ def print_grid(grid):
 
     print("\n".join(fin))
 
+
 # returns guard x and y pos and direction char
 def find_guard(grid):
     for i in range(rows):
@@ -81,7 +82,7 @@ for i in range(rows):
     for j in range(cols):
         if grid[i][j] == "X":
             count_x += 1
-            x_coords.add((i,j))
+            x_coords.add((i, j))
 
 part_1_ans = count_x
 
@@ -102,14 +103,14 @@ potential_obstacles.remove((guard_x, guard_y))
 # brute force check for valid obstacles along orig path
 valid_obstacles_count = 0
 for obstacle in potential_obstacles:
-   
+
     # reset grid
     grid = [list(line.strip()) for line in lines]
     guard_x, guard_y, facing = find_guard(grid)
     direction = directions[facing]
 
     grid[obstacle[0]][obstacle[1]] = "O"
-    
+
     # keep track of guard path and direct to detect cycle
     cycle_set = set()
 

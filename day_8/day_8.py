@@ -51,6 +51,8 @@ for antinode in antinodes:
 
 print("Part 1:", len(valid_antinodes))
 
+# Part 2
+#
 
 def generate_antinodes_2(freq_list):
     antinodes = set()

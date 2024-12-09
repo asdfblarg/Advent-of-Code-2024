@@ -3,6 +3,7 @@ with open("input.txt") as f:
 lines = [line.strip() for line in lines]
 disk_map = lines[0]
 
+
 def split_into_ids(disk_map):
     id_space_map = []
     block_id = 0
@@ -36,7 +37,10 @@ while left < right:
 
     # perform swap if pointers are still valid
     if left < right:
-        disk_map_shrink[left], disk_map_shrink[right] = disk_map_shrink[right], disk_map_shrink[left]
+        disk_map_shrink[left], disk_map_shrink[right] = (
+            disk_map_shrink[right],
+            disk_map_shrink[left],
+        )
 
 # calcuate checksum
 checksum = 0
@@ -50,6 +54,7 @@ print("Part 1:", checksum)
 
 # Part 2
 #
+
 
 # get next free block start index and block size up until right index
 # returns -1 if not found
@@ -65,8 +70,9 @@ def get_next_free_block(disk_map, left_index, right):
     while disk_map[left_index] == ".":
         block_size += 1
         left_index += 1
-        
+
     return start_index, block_size
+
 
 # reset disk_map
 disk_map_shrink_2 = split_into_ids(disk_map)
@@ -93,7 +99,7 @@ while i < len(disk_map_shrink_2):
 for file_id in range(len(file_ids_map) - 1, -1, -1):
     file_id_index = file_ids_map[file_id]
     file_id_size = file_ids_size_map[file_id]
-    
+
     # find next free block space with enough size
     free_index, free_blocks = get_next_free_block(disk_map_shrink_2, 0, file_id_index)
     if free_index != -1:

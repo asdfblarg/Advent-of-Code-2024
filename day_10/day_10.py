@@ -12,6 +12,7 @@ for i in range(rows):
     for j in range(cols):
         grid[i][j] = int(grid[i][j]) if grid[i][j] != "." else -1
 
+
 def get_trailheads(grid):
     trailheads = set()
     for i in range(rows):
@@ -19,6 +20,7 @@ def get_trailheads(grid):
             if grid[i][j] == 0:
                 trailheads.add((0, i, j))
     return trailheads
+
 
 def get_trail_score_and_rating(trailhead):
     queue = deque()

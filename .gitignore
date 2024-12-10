@@ -163,3 +163,4 @@ cython_debug/
 
 advent_of_code_2024.txt
 input.txt
+default/

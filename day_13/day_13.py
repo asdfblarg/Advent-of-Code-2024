@@ -19,10 +19,12 @@ for line in lines:
     machines.append((button_a, button_b, prize))
 
 
-def calc_machine_coins(machine):
+def calc_machine_coins(machine, part_2=False):
     a = machine[0]
     b = machine[1]
     prize = machine[2]
+    if part_2:
+        prize = 10000000000000 + prize[0], 10000000000000 + prize[1]
 
     # systems of equations
     b_rounds = ((a[0] * prize[1]) - (a[1] * prize[0])) / ((a[0] * b[1]) - (a[1] * b[0]))
@@ -45,27 +47,9 @@ print("Part 1:", total_coins)
 # Part 2
 #
 
-
-def calc_machine_coins_2(machine):
-    a = machine[0]
-    b = machine[1]
-    prize = machine[2]
-    prize = 10000000000000 + prize[0], 10000000000000 + prize[1]
-
-    # systems of equations
-    b_rounds = ((a[0] * prize[1]) - (a[1] * prize[0])) / ((a[0] * b[1]) - (a[1] * b[0]))
-    a_rounds = (prize[0] - (b[0] * b_rounds)) / a[0]
-    if a_rounds == int(a_rounds) and b_rounds == int(b_rounds):
-        a_rounds = int(a_rounds)
-        b_rounds = int(b_rounds)
-        return a_rounds, b_rounds
-
-    return 0, 0
-
-
 total_coins_2 = 0
 for machine in machines:
-    a_rounds, b_rounds = calc_machine_coins_2(machine)
+    a_rounds, b_rounds = calc_machine_coins(machine, part_2=True)
     total_coins_2 += 3 * a_rounds + b_rounds
 
 print("Part 1:", total_coins_2)

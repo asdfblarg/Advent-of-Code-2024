@@ -5,17 +5,16 @@ lines = [line.split("\n") for line in lines]
 
 machines = []
 for line in lines:
-    button_a = line[0]
-    button_a = button_a.split(": ")[-1].split(", ")
+    # TODO: clean this up with regex parsing or something
+    button_a = line[0].split(": ")[-1].split(", ")
     button_a = [int(pos.split("+")[-1]) for pos in button_a]
 
-    button_b = line[1]
-    button_b = button_b.split(": ")[-1].split(", ")
+    button_b = line[1].split(": ")[-1].split(", ")
     button_b = [int(pos.split("+")[-1]) for pos in button_b]
 
-    prize = line[2]
-    prize = prize.split(": ")[-1].split(", ")
+    prize = line[2].split(": ")[-1].split(", ")
     prize = [int(pos.split("=")[-1]) for pos in prize]
+
     machines.append((button_a, button_b, prize))
 
 
@@ -29,10 +28,10 @@ def calc_machine_coins(machine, part_2=False):
     # systems of equations
     b_rounds = ((a[0] * prize[1]) - (a[1] * prize[0])) / ((a[0] * b[1]) - (a[1] * b[0]))
     a_rounds = (prize[0] - (b[0] * b_rounds)) / a[0]
+
+    # if return ints if both a and b rounds are whole numbers
     if a_rounds == int(a_rounds) and b_rounds == int(b_rounds):
-        a_rounds = int(a_rounds)
-        b_rounds = int(b_rounds)
-        return a_rounds, b_rounds
+        return int(a_rounds), int(b_rounds)
 
     return 0, 0
 

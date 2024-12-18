@@ -41,16 +41,28 @@ print("Part 1:", shortest_path)
 # Part 2
 #
 
-mem_space = [["." for i in range(rows)] for j in range(cols)]
-count = 1
-for coord in coords:
-    print(f"{count} out of {len(coords)}", end="\r")
-    x, y = coord
-    mem_space[x][y] = "#"
+
+def run_coords(num_coords):
+    mem_space = [["." for i in range(rows)] for j in range(cols)]
+    for coord in coords[:num_coords]:
+        x, y = coord
+        mem_space[x][y] = "#"
+
     shortest_path = bfs_shortest_path(mem_space, rows, cols)
+    return shortest_path
+
+
+left = 1
+right = len(coords) - 1
+
+while left < right:
+    mid = (right + left) // 2
+    shortest_path = run_coords(mid)
     if shortest_path == -1:
-        break
+        right = mid - 1
+    else:
+        left = mid + 1
 
-    count += 1
-
+last_coord = coords[left]
+x, y = last_coord
 print("Part 2:", f"{y},{x}")
